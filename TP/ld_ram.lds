@@ -7,19 +7,19 @@ MEMORY
 
 SECTIONS
 {
-    .text : {
+    .text : { /* Le code */
             *(.text)
     } >SRAM1
 
-    .rodata : {
+    .rodata : { /* Les constantes*/
             *(.rodata)
     } >SRAM1
 
-    .data : {
+    .data : { /* Les données initialisées*/
             *(.data)
     } >SRAM1
 
-    .bss : {
+    .bss : { /* Les données non initialisées ou à zéro*/
             *(.bss) *(COMMON)
     } >SRAM1
 }

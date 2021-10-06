@@ -1,14 +1,14 @@
 PREFIX=arm-none-eabi-
 AS    = $(PREFIX)as
 CC 	  = $(PREFIX)gcc
-LD    = $(PREFIX)ld
+LD    = $(PREFIX)ld  ## es ld o gcc?
 GDB   = gdb-multiarch
 
 ASFLAGS = -g
-LDFLAGS = -g -Tld_ram.lds
+LDFLAGS = -g -T ld_ram.lds ##sobre una -g
 CFLAGS = -g -O1
 TARGET_ARCH = -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 #le mcpu
-TARGET_MACH = $(TARGET_ARCH)
+TARGET_MACH = $(TARGET_ARCH) ##entender mejor qué es target_arch
 ##LINKER_SCRIPT= ld_ram.lds  # new
 
 
