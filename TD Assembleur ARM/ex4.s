@@ -2,17 +2,15 @@
 
     Exercice 4 de TD Assembleur ARM
     BONJOUR LE MONDE!
-
-    HERE I'M LEARNING HOW TO USE GIT ON MY LAPTOP AND TO PUSH THE CODE 
 */
 .syntax unified
 .arch armv7-m
 .cpu cortex-m4
 .thumb
 
-.global _start 
+.global _start
 
-ENSAYOOOOOOOOOOOOOOOOOOO
+
 _start:
 
     ldr r0, =0x10008000  //definir stack pointer
@@ -39,7 +37,7 @@ _start:
 memset:
     mov r1, #0 //offset
     push {r4} //save on stack
-    mov r4, #0 //0, it'll be the comparison "0" 
+    mov r4, #0 //0, it'll be the comparison "0"
 loop:
 	ldrb r3, [r0,r1] // assign each letter in r3
     add r1,r1,#1 // r1 = r1 + 1
@@ -58,7 +56,7 @@ loop:
 memcpy:
     push{r5}
     mov r5, #0 //offset
-cploop: 
+cploop:
 	ldrb r3, [r0,r5] // r3 = pt_string + r5(0)
     strb r3, [r2, r5] //store in destinationa address
     add r5,r5,#1 // r5 = r5 + 1
@@ -68,7 +66,7 @@ cploop:
     pop{r5} //return r5
     bx lr
 
-//r0 --- origin 
+//r0 --- origin
 // r2 -- destination
 //r6 --number of times of copying (I chose it)
 
@@ -77,7 +75,7 @@ mem_plusieurs:
     push{r4,r6}
     mov r4, r1 //r4 becomes size of string
     mov r6, #5 //number of times of copying (I chose it)
-    
+
     bl memcpy
 
     add r2, r4,r2 // destin address = size of string + destin address 
@@ -91,4 +89,4 @@ pt_string .word t_string
 .section .rodata
 t_string: asciz "Bonjour le monde!"
 
-end: b end 
+end: b end
