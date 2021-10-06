@@ -22,6 +22,7 @@ _start:
     mov r1, r0 // assign r1 as the string size
     bl mem_plusieurs
 
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 
     mov r0, pt_string
@@ -89,4 +90,4 @@ pt_string .word t_string
 .section .rodata
 t_string: asciz "Bonjour le monde!"
 
-end: b end
+end: b end 
