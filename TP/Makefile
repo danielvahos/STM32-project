@@ -19,7 +19,7 @@ all: $(EXE)
 
 
 $(EXE):$(OBJS)
-	$(LD) $(LDFLAGS) $^ -o $@
+	$(LD) $(LDFLAGS) $(TARGET_ARCH) $^ -o $@
 
 
 .PHONY: connect debug clean
