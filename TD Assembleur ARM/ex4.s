@@ -2,14 +2,17 @@
 
     Exercice 4 de TD Assembleur ARM
     BONJOUR LE MONDE!
+
+    HERE I'M LEARNING HOW TO USE GIT ON MY LAPTOP AND TO PUSH THE CODE 
 */
 .syntax unified
 .arch armv7-m
 .cpu cortex-m4
 .thumb
 
-.global _start
+.global _start 
 
+ENSAYOOOOOOOOOOOOOOOOOOO
 _start:
 
     ldr r0, =0x10008000  //definir stack pointer
