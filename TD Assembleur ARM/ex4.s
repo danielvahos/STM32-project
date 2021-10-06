@@ -22,8 +22,6 @@ _start:
     mov r1, r0 // assign r1 as the string size
     bl mem_plusieurs
 
-OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-
 
     mov r0, pt_string
     bl memcpy
