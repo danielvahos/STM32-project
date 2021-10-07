@@ -1,7 +1,6 @@
 
 int main(){ //function main qui fait boucle infinite
-    int true= 1;
-    while(true) //boucle infinite
+    while(1) //boucle infinite
     {}
 }
 
