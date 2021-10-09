@@ -20,8 +20,11 @@ SECTIONS
     } >SRAM1
 
     .bss : { /* Les données non initialisées ou à zéro*/
+                _bstart = . ;
             *(.bss) *(COMMON)
+            _bend = . ;
+
     } >SRAM1
 }
 
-ENTRY(main)
+ENTRY(_start)

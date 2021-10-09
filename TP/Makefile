@@ -4,16 +4,16 @@ CC 	  = $(PREFIX)gcc
 LD    = $(PREFIX)gcc## es ld o gcc?
 GDB   = gdb-multiarch
 
-ASFLAGS = -g -c#les agrego c
+ASFLAGS = -g #les agrego c
 LDFLAGS = -T ld_ram.lds -nostartfiles##sobre una -g
-CFLAGS = -g -O1 -c#agrego c
+CFLAGS = -g -O1 -c -ffreestanding#agrego c
 TARGET_ARCH = -mcpu=cortex-m4 -mthumb
 TARGET_MACH = $(TARGET_ARCH) ##entender mejor qué es target_arch
 ##LINKER_SCRIPT= ld_ram.lds  # new
 LIBS= -lm
 
-OBJS = main.o
-EXE = main ##le quité el exe
+OBJS = main.o crt0.o init.o memfuncs.o
+EXE = main.elf##le quité el exe
 
 all: $(EXE)
 
@@ -25,7 +25,7 @@ $(EXE):$(OBJS)
 	$(CC) $(CFLAGS) $(TARGET_ARCH) $< -o $@
 
 %.o : %.s
-	$(AS) $(ASFLAGS) $< -o $@
+	$(AS) $(ASFLAGS) $(TARGET_ARCH) $< -o $@
 
 
 .PHONY: connect debug clean
