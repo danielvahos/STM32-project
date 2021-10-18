@@ -1,4 +1,5 @@
 #include "led.h"
+#include "clocks.h"
 
 //int n;
 //n = 8;
@@ -22,6 +23,7 @@ int fibo(int n){ //Function Fibonnacci
 
 int main(){ //function main qui fait boucle infinite
 
+    clocks_init(); // on doit appeler l'inisialitation de l'horloge
     led_init(); // I call the led_init function from led.c
     led_g_on(); // I order the led to turn on
 
