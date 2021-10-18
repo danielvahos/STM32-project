@@ -26,5 +26,5 @@ SECTIONS
 
     } >SRAM1
 }
-
+start_sp = ORIGIN(SRAM2) + LENGTH(SRAM2);
 ENTRY(_start)

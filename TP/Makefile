@@ -1,18 +1,17 @@
 PREFIX=arm-none-eabi-
 AS    = $(PREFIX)as
 CC 	  = $(PREFIX)gcc
-LD    = $(PREFIX)gcc## es ld o gcc?
+LD    = $(PREFIX)gcc## on utilise gcc
 GDB   = gdb-multiarch
 
-ASFLAGS = -g #les agrego c
-LDFLAGS = -T ld_ram.lds -nostartfiles##sobre una -g
-CFLAGS = -g -O1 -c -ffreestanding#agrego c
-TARGET_ARCH = -mcpu=cortex-m4 -mthumb
-TARGET_MACH = $(TARGET_ARCH) ##entender mejor qué es target_arch
-##LINKER_SCRIPT= ld_ram.lds  # new
+ASFLAGS = -g
+LDFLAGS = -T ld_ram.lds -nostartfiles
+CFLAGS = -g -O1 -c -ffreestanding#-ffreestanding pour ne pas utiliser biblioteque conventional
+TARGET_ARCH = -mcpu=cortex-m4 -mthumb #on utilise mthumb pour avoir instructions par 2
+TARGET_MACH = $(TARGET_ARCH)
 LIBS= -lm
 
-OBJS = main.o crt0.o init.o memfuncs.o
+OBJS = main.o crt0.o init.o memfuncs.o led.o
 EXE = main.elf##le quité el exe
 
 all: $(EXE)
@@ -28,7 +27,7 @@ $(EXE):$(OBJS)
 	$(AS) $(ASFLAGS) $(TARGET_ARCH) $< -o $@
 
 
-.PHONY: connect debug clean
+.PHONY: connect debug clean all ##sans fichiers
 
 
 connect:

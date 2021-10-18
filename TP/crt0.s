@@ -6,10 +6,9 @@
 .global _start
 
 _start:
-    ldr sp, =0x10008000 //mis addr dans sp
-    bl init_bss
-    bl main
-    b _exit
+    ldr sp, =start_sp//mis addr dans sp,  0x10008000
+    bl init_bss //mettre bss en 0
+    bl main // appeler le main
 
-_exit:
+_exit: // boucle infinit d'EXIT
 b _exit
