@@ -1,5 +1,6 @@
 #include "led.h"
 #include "clocks.h"
+#include "uart.h"
 
 //int n;
 //n = 8;
@@ -20,38 +21,24 @@ int fibo(int n){ //Function Fibonnacci
     return a;
 }
 
+int checksum(){
+uint32_t sum = 0;
+for (int i = 0; i<1000; i++){
+    sum = uart_getchar() + sum;
+}
+return sum;
+}
 
 int main(){ //function main qui fait boucle infinite
 
     clocks_init(); // on doit appeler l'inisialitation de l'horloge
-    led_init(); // I call the led_init function from led.c
-    led_g_on(); // I order the led to turn on
+    uart_init();
+    uart_puts("Hello World!");
+    char a[13];
+    uart_gets(a, 13);
+    int sum= (checksum());
 
-    for (int i=0; i<3; i++){ //delay for being on
-        asm volatile("nop");
-    }
-
-    led_g_off(); //I order the led to turn off
-
-    for (int i=0; i<3; i++){// delay for being off
-        asm volatile("nop");
-    }
-
-    led(LED_BLUE); //order the led blue/yellow to turn on/off
-
-    for (int i=0; i<3; i++){// delay for being off
-        asm volatile("nop");
-    }
-    led(LED_YELLOW);
-
-    for (int i=0; i<3; i++){// delay for being off
-        asm volatile("nop");
-    }
-
-    int result= fibo(8);
-    return result;
-    /*
     while(1) //boucle infinite
     {}
-    */
 }
+
