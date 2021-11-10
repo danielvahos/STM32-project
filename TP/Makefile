@@ -2,6 +2,7 @@ PREFIX=arm-none-eabi-
 AS    = $(PREFIX)as
 CC 	  = $(PREFIX)gcc
 LD    = $(PREFIX)gcc## on utilise gcc
+OBJCOPY=$(PREFIX)objcopy
 GDB   = gdb-multiarch
 
 ASFLAGS = -g
@@ -12,7 +13,7 @@ TARGET_ARCH = -mcpu=cortex-m4 -mthumb #on utilise mthumb pour avoir instructions
 TARGET_MACH = $(TARGET_ARCH)
 LIBS= -lm
 
-C_OBJS = main.o crt0.o init.o memfuncs.o led.o uart.o
+C_OBJS = main.o crt0.o init.o memfuncs.o led.o uart.o matrix.o image.o
 OBJS = $(C_OBJS) clocks.o
 EXE = main.elf##le quité el exe
 
@@ -28,6 +29,8 @@ $(EXE):$(OBJS)
 %.o : %.s
 	$(AS) $(ASFLAGS) $(TARGET_ARCH) $< -o $@
 
+image.o : image.raw
+	$(OBJCOPY) -I binary -O elf32-littlearm $^ image.o
 
 .PHONY: connect debug clean all ##sans fichiers
 

@@ -10,5 +10,5 @@ _start:
     bl init_bss //mettre bss en 0
     bl main // appeler le main
 
-_exit: // boucle infinit d'EXIT
+_exit: // boucle infinie d'EXIT
 b _exit

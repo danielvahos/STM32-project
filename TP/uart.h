@@ -2,7 +2,7 @@
 #define UART_H
 #include <stdint.h>
 #include <stddef.h>
-#define STM32L475xx //c'est où se trouve le typedef 
+#define STM32L475xx //c'est où se trouve le typedef
 #include "stm32l4xx.h"  //on doit incluire le fichier pour l'utiliser
 // Functions declaration
 void uart_init();

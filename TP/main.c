@@ -1,9 +1,8 @@
 #include "led.h"
 #include "clocks.h"
 #include "uart.h"
+#include "matrix.h"
 
-//int n;
-//n = 8;
 int x=0;
 
 int fibo(int n){ //Function Fibonnacci
@@ -32,13 +31,14 @@ return sum;
 int main(){ //function main qui fait boucle infinite
 
     clocks_init(); // on doit appeler l'inisialitation de l'horloge
+    led_init();
     uart_init();
     uart_puts("Hello World!");
-    char a[13];
-    uart_gets(a, 13);
-    int sum= (checksum());
+    matrix_init();
 
     while(1) //boucle infinite
-    {}
+    {
+        test_pixels();
+    }
 }
 
