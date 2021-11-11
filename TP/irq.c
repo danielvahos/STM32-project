@@ -96,8 +96,18 @@ MAKE_DEFAULT_HANDLER(LCD_IRQHandler);
 MAKE_DEFAULT_HANDLER(AES_IRQHandler);
 MAKE_DEFAULT_HANDLER(RNG_IRQHandler);                    /*!< RNG global interrupt                                              */
 MAKE_DEFAULT_HANDLER(FPU_IRQHandler);
+MAKE_DEFAULT_HANDLER(HASH_IRQHandler);
+MAKE_DEFAULT_HANDLER(I2C4_EV_IRQHandler);
+MAKE_DEFAULT_HANDLER(I2C4_ER_IRQHandler);
+MAKE_DEFAULT_HANDLER(DCMI_IRQHandler);
+MAKE_DEFAULT_HANDLER(CAN2_TX_IRQHandler);
+MAKE_DEFAULT_HANDLER(CAN2_RX0_IRQHandler);
+MAKE_DEFAULT_HANDLER(CAN2_RX1_IRQHandler);
+MAKE_DEFAULT_HANDLER(CAN2_SCE_IRQHandler);
+MAKE_DEFAULT_HANDLER(DMA2D_IRQHandler);
 
-void *vector_table[] __attribute((section("VECTOR_TABLE"))) = {
+
+void *vector_table[] __attribute((section(".VECTOR_TABLE"))) = {
     // Stack and Reset Handler
     &start_sp,            /* Top of stack */
     &_start,             /* Reset handler */
@@ -199,6 +209,15 @@ void *vector_table[] __attribute((section("VECTOR_TABLE"))) = {
     TSC_IRQHandler,/*!< Touch Sense Controller global interrupt                           */
     RNG_IRQHandler,/*!< RNG global interrupt                                              */
     FPU_IRQHandler,/*!< FPU global interrupt                                              */
+    HASH_IRQHandler,
+    I2C4_EV_IRQHandler,
+    I2C4_ER_IRQHandler,
+    DCMI_IRQHandler,
+    CAN2_TX_IRQHandler,
+    CAN2_RX0_IRQHandler,
+    CAN2_RX1_IRQHandler,
+    CAN2_SCE_IRQHandler,
+    DMA2D_IRQHandler,
     };
 
 void irq_init(void){
