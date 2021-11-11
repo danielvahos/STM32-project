@@ -13,7 +13,7 @@ TARGET_ARCH = -mcpu=cortex-m4 -mthumb #on utilise mthumb pour avoir instructions
 TARGET_MACH = $(TARGET_ARCH)
 LIBS= -lm
 
-C_OBJS = main.o crt0.o init.o memfuncs.o led.o uart.o matrix.o image.o
+C_OBJS = main.o crt0.o init.o memfuncs.o led.o uart.o matrix.o image.o irq.o buttons.o
 OBJS = $(C_OBJS) clocks.o
 EXE = main.elf##le quité el exe
 

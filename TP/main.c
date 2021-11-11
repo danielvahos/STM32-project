@@ -2,6 +2,8 @@
 #include "clocks.h"
 #include "uart.h"
 #include "matrix.h"
+#include "irq.h"
+#include "buttons.h"
 
 int x=0;
 
@@ -35,6 +37,8 @@ int main(){ //function main qui fait boucle infinite
     uart_init();
     uart_puts("Hello World!");
     matrix_init();
+    irq_init();
+    button_init();
 
     while(1) //boucle infinite
     {
