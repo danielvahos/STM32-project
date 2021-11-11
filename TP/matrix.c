@@ -126,7 +126,7 @@ void matrix_init(){
     init_bank0();
 
     //prover le led matrix avec un melange entre rouge et blue
-    memcpy(image_matrix, &_binary_image_raw_start, 192);
+    //memcpy(image_matrix, &_binary_image_raw_start, 192);
 }
 
 void deactivate_rows(){

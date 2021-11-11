@@ -7,9 +7,10 @@ MEMORY
 
 SECTIONS
 {
-        .VECTOR_TABLE : ALIGN(256){
-                *(.VECTOR_TABLE)
-        } >SRAM1
+    .VECTOR_TABLE : ALIGN(256){
+        *(.VECTOR_TABLE)
+    } >SRAM1
+
     .text : { /* Le code */
             *(.text)
     } >SRAM1

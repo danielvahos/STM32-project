@@ -34,7 +34,7 @@ int main(){ //function main qui fait boucle infinite
 
     clocks_init(); // on doit appeler l'inisialitation de l'horloge
     led_init();
-    uart_init();
+    uart_init(38400);
     uart_puts("Hello World!");
     matrix_init();
     irq_init();

@@ -1,6 +1,16 @@
 #include "uart.h"
+//#include "matrix.h"
+typedef struct {
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+} rgb_color;
+extern rgb_color image_matrix[64];
+uint32_t cont= 0;
+uint8_t pixel =0;
 
-void uart_init(){
+
+void uart_init(int baudrate){
     //Pour activer l'horloge du port B dans registre idoine
     RCC->AHB2ENR |= RCC_AHB2ENR_GPIOBEN;
 
@@ -23,7 +33,7 @@ void uart_init(){
     USART1->CR2 = 0;
 
     //Pour la vitesse du port série à 115200
-    USART1->BRR = (int)80000000/115200;
+    USART1->BRR = (int)80000000/baudrate; // modifié pour le IRQ+UART+LED
 
 
     //Pour activer l'USART1
@@ -35,6 +45,10 @@ void uart_init(){
     //USART1->CR1= (1<<3); //Transmetteur
     USART1->CR1 |= USART_CR1_TE; //Transmetteur
 
+    //Si il reçoit une trame, active rxneie pour envoyer l'interruption
+    USART1->CR1 |= USART_CR1_RXNEIE;
+
+    NVIC_EnableIRQ(USART1_IRQn);
 }
 
 void uart_putchar(uint8_t c){
@@ -66,5 +80,24 @@ void uart_gets(char *s, size_t size){
     while(s[i] < size){//si c'est moin que la taille de char
         uart_getchar();//returner la valeur
         i++;
+    }
+}
+
+void USART1_IRQHandler(void){
+    uint8_t byte = uart_getchar();
+    if((byte==0xff) | (cont==192)){
+        cont=0;
+    }else{
+        if((cont%3) == 0){
+            image_matrix[(uint8_t)(cont/3)].r = byte;
+        }
+        if((cont%3)== 1){
+            image_matrix[(uint8_t)(cont/3)].g = byte;
+        }
+        if((cont%3) == 2){
+            image_matrix[(uint8_t)(cont/3)].b = byte;
+        }
+        //uart_putchar(byte);
+        cont++;
     }
 }
