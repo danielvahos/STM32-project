@@ -20,3 +20,14 @@ void button_init(void){
     NVIC_EnableIRQ(40);
 }
 
+//Fonction pour l'interruption dans l'EXTI
+void EXTI15_10_IRQHandler(void){
+    SET_BIT(EXTI->PR1, EXTI_PR1_PIF13);
+    led_g_on();
+
+    for (int i=0; i<100000; i++){
+        asm volatile("nop");
+    }
+    led_g_off();
+}
+
